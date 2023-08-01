@@ -1,0 +1,8 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<Tagtable name='Standard-Variablentabelle'>
+  <!-- exported by 'Totally Integrated Automation Portal' version 1700.5.401.1   © 2004-2016 Siemens AG - all rights reserved -->
+  <Tag type='Bool' hmiVisible='True' hmiWriteable='True' hmiAccessible='True' retain='False' remark='Kommentar' addr='%E0.0'>Variable2_E0.0</Tag>
+  <Tag type='Bool' hmiVisible='True' hmiWriteable='False' hmiAccessible='True' retain='False' remark='Kommentar2' addr='%E0.1'>Var_E0.1</Tag>
+  <Tag type='Bool' hmiVisible='False' hmiWriteable='True' hmiAccessible='True' retain='False' remark='' addr='%E0.2'>Var_E0.2</Tag>
+  <Tag type='Bool' hmiVisible='True' hmiWriteable='True' hmiAccessible='True' retain='False' remark='Kommentar' addr='%E0.3'>Var_E0.3</Tag>
+</Tagtable>
