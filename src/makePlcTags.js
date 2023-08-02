@@ -108,7 +108,7 @@ const plcTagsObj = {
                 '@@hmiWriteable': 'False',
                 '@@hmiAccessible': 'True',
                 '@@retain': 'False',
-                '@@remark': tag.text,
+                '@@remark': `${tag.text} | Plc-Module ${tag.tagIdPlcModule} : ${tag.connector}`,
                 '@@addr': `%${tag.ioAddress}`,
                 '#text': text,
             }
