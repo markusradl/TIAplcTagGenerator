@@ -1,5 +1,6 @@
 {
     "name": "tiaplctaggenerator",
+    "bin": "src/makePlcTags.js",
     "version": "1.0.0",
     "description": "Make PLC-Tag List from E-Plan SPS-Liste",
     "main": "makePlcTags.js",
@@ -15,6 +16,7 @@
         "yargs": "^17.7.2"
     },
     "devDependencies": {
-        "nodemon": "^3.0.1"
+        "nodemon": "^3.0.1",
+        "pkg": "^5.8.1"
     }
 }
