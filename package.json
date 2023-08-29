@@ -6,7 +6,8 @@
     "main": "makePlcTags.js",
     "scripts": {
         "test": "nodemon ./src/makePlcTags.js",
-        "start": "node ./src/makePlcTags.js"
+        "start": "node ./src/makePlcTags.js",
+        "build": "pkg . --targets node18-win-x64 --output dist/makeplctags"
     },
     "author": "",
     "license": "ISC",

@@ -1,11 +1,39 @@
 const XLSX = require('xlsx')
 const { XMLParser, XMLBuilder } = require('fast-xml-parser')
 const { writeFile } = require('fs/promises')
+const yargs = require('yargs')
 
-const PATH_TO_DATA = 'data'
+const { hideBin } = require('yargs/helpers')
+
+//Help
+yargs(hideBin(process.argv))
+  .option('spath', {
+    type: 'string',
+    description: 'Path to source file (default = SPS-Liste.xlsx)'
+  })
+  .option('dpath', {
+    type: 'string',
+    description: 'Path to destination file (default = PlcTags.xml)'
+  })
+  .alias('h','help')
+  .alias('?','help')
+  .parse()
+
+
+let sourcePath = 'SPS-Liste.xlsx'
+let destPath = 'PlcTags.xml'
+
+if (yargs.argv.spath) {
+    sourcePath = yargs.argv.spath
+
+}
+if(yargs.argv.dpath){
+    destPath = yargs.argv.dpath
+}
+
 const TAG_TABLE_NAME = 'Imported SPS-Liste'
 
-console.log(`Started ./src/makePlcTags.js, Data is in ${PATH_TO_DATA}`)
+console.log(`Started ./src/makePlcTags.js, Data is in ${sourcePath}`)
 
 // --
 // 1) Read SPS-Liste.xlsx - use npm xlsx
@@ -16,7 +44,7 @@ console.log(`Started ./src/makePlcTags.js, Data is in ${PATH_TO_DATA}`)
 // --
 
 // 1) Read SPS-Liste.xlsx
-const workbook = XLSX.readFile(`${PATH_TO_DATA}/SPS-Liste.xlsx`)
+const workbook = XLSX.readFile(`${sourcePath}`)
 
 // Get first worksheet
 const sheetName = workbook.SheetNames[0]
@@ -127,10 +155,12 @@ const builder = new XMLBuilder(options)
 const output = builder.build(plcTagsObj)
 
 // 5) Write new XML file PlcTags.xml (override existing)
-writeFile(`${PATH_TO_DATA}/PlcTags.xml`, output)
+writeFile(`${destPath}`, output)
     .then(() => {
-        console.log('PlcTags.xml written')
+        console.log(`${destPath} written`)
     })
     .catch((err) => {
         console.error(err)
     })
+
+
