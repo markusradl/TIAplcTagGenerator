@@ -3,35 +3,24 @@ const { XMLParser, XMLBuilder } = require('fast-xml-parser')
 const { writeFile } = require('fs/promises')
 const yargs = require('yargs')
 
-const { hideBin } = require('yargs/helpers')
-
-//Help
-yargs(hideBin(process.argv))
-  .option('spath', {
-    type: 'string',
-    description: 'Path to source file (default = SPS-Liste.xlsx)'
-  })
-  .option('dpath', {
-    type: 'string',
-    description: 'Path to destination file (default = PlcTags.xml)'
-  })
-  .alias('h','help')
-  .alias('?','help')
-  .parse()
-
-
-let sourcePath = 'SPS-Liste.xlsx'
-let destPath = 'PlcTags.xml'
-
-if (yargs.argv.spath) {
-    sourcePath = yargs.argv.spath
-
-}
-if(yargs.argv.dpath){
-    destPath = yargs.argv.dpath
-}
-
 const TAG_TABLE_NAME = 'Imported SPS-Liste'
+
+// Init yargs cli arguments and define help
+const { spath: sourcePath, dpath: destPath } = yargs
+    .option('spath', {
+        type: 'string',
+        description: 'Path to source file',
+        demandOption: false,
+        default: 'SPS-Liste.xlsx',
+    })
+    .option('dpath', {
+        type: 'string',
+        description: 'Path to destination file',
+        demandOption: false,
+        default: 'PlcTags.xml',
+    })
+    .help()
+    .alias('help', 'h').argv
 
 console.log(`Started ./src/makePlcTags.js, Data is in ${sourcePath}`)
 
@@ -162,5 +151,3 @@ writeFile(`${destPath}`, output)
     .catch((err) => {
         console.error(err)
     })
-
-
