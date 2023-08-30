@@ -9,13 +9,13 @@ const TAG_TABLE_NAME = 'Imported SPS-Liste'
 const { spath: sourcePath, dpath: destPath } = yargs
     .option('spath', {
         type: 'string',
-        description: 'Path to source file',
+        description: 'Path to source xlsx file exported from EPlan',
         demandOption: false,
         default: 'SPS-Liste.xlsx',
     })
     .option('dpath', {
         type: 'string',
-        description: 'Path to destination file',
+        description: 'Path to destination xml file for import into TIA Portal',
         demandOption: false,
         default: 'PlcTags.xml',
     })
